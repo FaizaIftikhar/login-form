@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./Login.css";
+import "./LoginForm.css";
 
 //Reusable InputField Component
 function InputField({ label, type, name, value, onChange, placeholder, error }) {
