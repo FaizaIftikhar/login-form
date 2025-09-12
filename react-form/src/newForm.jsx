@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Login.css";
 
-// ✅ Reusable InputField Component
+//Reusable InputField Component
 function InputField({ label, type, name, value, onChange, placeholder, error }) {
   return (
     <div className="input-field">
@@ -85,7 +85,56 @@ export default function LoginForm() {
     <form onSubmit={handleSubmit} className="login-container">
       <h2>Login</h2>
 
-     
+      <InputField
+        label="Username:"
+        name="username"
+        type="text"
+        value={formData.username}
+        onChange={handleChange}
+        placeholder="Enter your username"
+        error={errors.username}
+      />
+
+      <InputField
+        label="Email:"
+        name="email"
+        type="email"
+        value={formData.email}
+        onChange={handleChange}
+        placeholder="you@example.com"
+        error={errors.email}
+      />
+
+      <InputField
+        label="Password:"
+        name="password"
+        type={formData.showPassword ? "text" : "password"}
+        value={formData.password}
+        onChange={handleChange}
+        placeholder="password"
+        error={errors.password}
+      />
+
+      <div className="checkbox">
+        <label>
+          <input
+            name="showPassword"
+            type="checkbox"
+            checked={formData.showPassword}
+            onChange={handleChange}
+          />{" "}
+          Show password
+        </label>
+      </div>
+
+      <div className="buttons">
+        <button type="submit">Login</button>
+        <button type="button" onClick={handleReset}>
+          Reset
+        </button>
+      </div>
+
+      {formData.message && <p className="success">{formData.message}</p>}
     </form>
   );
 }
