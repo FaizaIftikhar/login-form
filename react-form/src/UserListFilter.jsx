@@ -3,10 +3,11 @@ import React from "react";
 import axios from "axios";
 import Loading from "./Loading";
 import ErrorMessage from "./ErrorMessage";
+import "./filter.css"; 
 
 const UserItem = React.memo(({ user }) => (
-  <li style={{ marginBottom: "8px" }}>
-    {user.name} <span style={{ color: "gray" }}>({user.email})</span>
+  <li className="userlist-item">
+    {user.name} <span className="userlist-email">({user.email})</span>
   </li>
 ));
 
@@ -39,20 +40,20 @@ function UserList() {
   if (error) return <ErrorMessage message={error} />;
 
   return (
-    <div style={{ maxWidth: "500px", margin: "20px auto", fontFamily: "Arial, sans-serif" }}>
+    <div className="userlist-container">
       <h2>Users Search</h2>
       <input
         type="text"
         placeholder="Search users..."
         value={search}
         onChange={(e) => setSearch(e.target.value)}
-        style={{ width: "100%", padding: "8px", marginBottom: "12px" }}
+        className="userlist-input"
       />
 
       {filteredUsers.length === 0 ? (
-        <p style={{ color: "gray" }}>No users found</p>
+        <p className="userlist-empty">No users found</p>
       ) : (
-        <ul style={{ padding: 0, listStyle: "none" }}>
+        <ul className="userlist-list">
           {filteredUsers.map((user) => (
             <UserItem key={user.id} user={user} />
           ))}
