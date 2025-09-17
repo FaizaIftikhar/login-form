@@ -23,6 +23,10 @@ function UserList() {
   if (loading) return <p>Loading...</p>;
   if (error) return <p style={{ color: "red" }}>{error}</p>;
 
+  const filteredUsers = users.filter((user) =>
+    user.name.toLowerCase().includes(search.toLowerCase())
+  );
+
   return (
     <div style={{ maxWidth: "500px", margin: "20px auto", fontFamily: "Arial, sans-serif" }}>
       <h2>Users Search</h2>
@@ -33,17 +37,18 @@ function UserList() {
         onChange={(e) => setSearch(e.target.value)}
         style={{ width: "100%", padding: "8px", marginBottom: "12px" }}
       />
-      <ul style={{ padding: 0, listStyle: "none" }}>
-        {users
-          .filter((user) =>
-            user.name.toLowerCase().includes(search.toLowerCase())
-          )
-          .map((user) => (
+
+      {filteredUsers.length === 0 ? (
+        <p style={{ color: "gray" }}>No users found</p>
+      ) : (
+        <ul style={{ padding: 0, listStyle: "none" }}>
+          {filteredUsers.map((user) => (
             <li key={user.id} style={{ marginBottom: "8px" }}>
               {user.name} <span style={{ color: "gray" }}>({user.email})</span>
             </li>
           ))}
-      </ul>
+        </ul>
+      )}
     </div>
   );
 }
