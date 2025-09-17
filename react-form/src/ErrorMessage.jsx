@@ -1,5 +1,5 @@
 function ErrorMessage({ message }) {
-  return <p style={{ color: "red" }}>{message}</p>;
+  return <p>{message}</p>;
 }
 
 export default ErrorMessage;
