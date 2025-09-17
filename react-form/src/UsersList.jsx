@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState,useMemo } from "react";
 import axios from "axios";
 
 function UserList() {
@@ -19,13 +19,16 @@ function UserList() {
         setLoading(false);
       });
   }, []);
+  const filteredUsers = useMemo(()=>{
+    return users.filter((user) =>
+    user.name.toLowerCase().includes(search.toLowerCase())
+  );},[users,search]);
+
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p style={{ color: "red" }}>{error}</p>;
 
-  const filteredUsers = users.filter((user) =>
-    user.name.toLowerCase().includes(search.toLowerCase())
-  );
+  
 
   return (
     <div style={{ maxWidth: "500px", margin: "20px auto", fontFamily: "Arial, sans-serif" }}>
