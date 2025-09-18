@@ -1,0 +1,28 @@
+.userlist-container {
+  max-width: 500px;
+  margin: 20px auto;
+  font-family: Arial, sans-serif;
+}
+
+.userlist-input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 12px;
+}
+
+.userlist-list {
+  padding: 0;
+  list-style: none;
+}
+
+.userlist-item {
+  margin-bottom: 8px;
+}
+
+.userlist-email {
+  color: gray;
+}
+
+.userlist-empty {
+  color: gray;
+}
