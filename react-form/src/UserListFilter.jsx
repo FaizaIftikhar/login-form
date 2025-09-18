@@ -7,7 +7,8 @@ import "./filter.css";
 
 const UserItem = React.memo(({ user }) => (
   <li className="userlist-item">
-    {user.name} <span className="userlist-email">({user.email})</span>
+    <span className="userlist-name">{user.name}</span>
+    <span className="userlist-email">{user.email}</span>
   </li>
 ));
 
@@ -42,13 +43,16 @@ function UserList() {
   return (
     <div className="userlist-container">
       <h2>Users Search</h2>
-      <input
-        type="text"
-        placeholder="Search users..."
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-        className="userlist-input"
-      />
+      <div className="userlist-input-wrapper">
+        <span className="search-icon">🔍</span>
+        <input
+          type="text"
+          placeholder="Search users..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          className="userlist-input"
+        />
+      </div>
 
       {filteredUsers.length === 0 ? (
         <p className="userlist-empty">No users found</p>
