@@ -1,15 +1,15 @@
-import React, { createContext, useState, useContext } from "react";
+// src/UserContext.js
+import React, { createContext, useContext, useState } from "react";
 
-const UserContext = createContext(null);
+const UserContext = createContext();
 
 export function UserProvider({ children }) {
   const [user, setUser] = useState(null);
 
-  const login = (userInfo) => setUser(userInfo);
   const logout = () => setUser(null);
 
   return (
-    <UserContext.Provider value={{ user, login, logout }}>
+    <UserContext.Provider value={{ user, setUser, logout }}>
       {children}
     </UserContext.Provider>
   );
@@ -18,5 +18,3 @@ export function UserProvider({ children }) {
 export function useUser() {
   return useContext(UserContext);
 }
-
-export default UserContext;
